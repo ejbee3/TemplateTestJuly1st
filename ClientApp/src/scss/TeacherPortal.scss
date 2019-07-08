@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
+$font-stack: 'Do Hyeon', sans-serif;
+$primary-color: navy;
+
+body {
+  background-color: lightblue;
+}
+
+main {
+  font-family: $font-stack;
+  color: $primary-color;
+}
+
+ul {
+  list-style: none;
+}
+
+.flex-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.student-container {
+  padding: 5rem 0 5rem 0;
+  margin: 1rem 10rem 0rem 10rem;
+  border: 5px solid black;
+  border-radius: 20px;
+  color: darkblue;
+
+  background-image: radial-gradient(#d2b48c, #f4a460, #954535);
+}
+
+footer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.apple-image {
+  height: 5rem;
+  width: 7rem;
+}
+
+.teacher-info {
+  background-color: #343434;
+  border: 3px solid goldenrod;
+  font-family: 'Permanent Marker', cursive;
+  color: #f5fffa;
+
+  h2 {
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+  }
+}
