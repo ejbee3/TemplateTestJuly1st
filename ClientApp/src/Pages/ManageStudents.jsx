@@ -34,7 +34,8 @@ export default class ManageStudents extends Component {
       })
       .then(resp => {
         this.setState({
-          students: this.state.students.concat(this.state.student)
+          students: this.state.students.concat(this.state.student),
+          student: {}
         })
         console.log(this.state.students)
       })
@@ -56,10 +57,9 @@ export default class ManageStudents extends Component {
         })
         .then(resp => {
           this.setState({
-            students: resp.data
+            students: this.state.students.filter(f => f.id !== student.id)
           })
         })
-      window.location.href = '/manage'
     }
   }
 
@@ -108,7 +108,7 @@ export default class ManageStudents extends Component {
         </form>
         <main>
           <hr />
-          <h4>Class Roster:</h4>
+          <h4>Class Roster for your class:</h4>
           <hr />
           <ul>
             {this.state.students.map(student => {
