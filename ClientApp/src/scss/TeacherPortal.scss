@@ -29,7 +29,7 @@ ul {
   border: 5px solid black;
   border-radius: 20px;
   color: $primary-color;
-
+  box-shadow: 5px 7px #888888;
   background-image: radial-gradient(#d2b48c, #f4a460, #954535);
 }
 
@@ -67,6 +67,8 @@ ul {
   border: 3px solid $tertiary-color;
   font-family: 'Permanent Marker', cursive;
   color: $text-white;
+  box-shadow: 5px 7px #888888;
+  margin: 1.4rem;
 
   h2 {
     text-align: center;

@@ -67,7 +67,7 @@ export default function TeacherPortal() {
       <section>{message && <h3 className="font-change">{message}</h3>}</section>
       <main>
         <hr />
-        <h4>Waiting to be checked into class...</h4>
+        <h4>Currently being checked in...</h4>
         <hr />
         <ul>
           {students.map(student => {
