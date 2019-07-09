@@ -3,9 +3,12 @@
 
 $font-stack: 'Do Hyeon', sans-serif;
 $primary-color: navy;
+$secondary-color: lightblue;
+$tertiary-color: goldenrod;
+$text-white: #f5fffa;
 
 body {
-  background-color: lightblue;
+  background-color: $secondary-color;
 }
 
 main {
@@ -15,39 +18,55 @@ main {
 
 ul {
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.flex-container {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
 .student-container {
-  padding: 5rem 0 5rem 0;
-  margin: 1rem 10rem 0rem 10rem;
+  padding: 3rem;
+  margin: 1rem 1rem 1rem 0;
   border: 5px solid black;
   border-radius: 20px;
-  color: darkblue;
+  color: $primary-color;
 
   background-image: radial-gradient(#d2b48c, #f4a460, #954535);
 }
 
-footer {
-  display: flex;
-  justify-content: left;
-  align-items: center;
+.student-container button {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0 0.5rem 0 0.5rem;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
-.apple-image {
-  height: 5rem;
-  width: 7rem;
+.student-container li {
+  font-size: 1.5rem;
+}
+
+.font-change {
+  font-family: $font-stack;
+  color: navy;
+}
+
+.check-button {
+  background-color: #3cb371;
+}
+
+.x-button {
+  background-color: #ff6961;
+}
+
+.absent-button {
+  background-color: #343434;
+  color: $text-white;
 }
 
 .teacher-info {
   background-color: #343434;
-  border: 3px solid goldenrod;
+  border: 3px solid $tertiary-color;
   font-family: 'Permanent Marker', cursive;
-  color: #f5fffa;
+  color: $text-white;
 
   h2 {
     text-align: center;

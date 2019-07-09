@@ -1,7 +1,6 @@
 import '../scss/TeacherPortal.scss'
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import pencil from '../images/pencil.jpg'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
@@ -37,9 +36,13 @@ export default function TeacherPortal() {
         }
       }
     ).then(resp => {
-      setMessage(`Student: ${student.firstName} was successfully checked in`)
+      setMessage(
+        `Student: ${student.firstName} was successfully checked in at time!`
+      )
     })
   }
+
+  const absentStudent = () => {}
 
   const signOut = () => {
     localStorage.clear()
@@ -61,31 +64,56 @@ export default function TeacherPortal() {
 
         <button>search student</button>
       </form>
-      <section>{message && <h3>{message}</h3>}</section>
+      <section>{message && <h3 className="font-change">{message}</h3>}</section>
       <main>
+        <hr />
+        <h4>Waiting to be checked into class...</h4>
+        <hr />
         <ul>
           {students.map(student => {
             return (
-              <div className="flex-container">
+              <section className="student-container">
+                <li key={student.id}>
+                  {student.firstName} {student.lastName}
+                </li>{' '}
+                <button
+                  className="check-button"
+                  onClick={() => checkInStudent(student)}
+                >
+                  <i class="material-icons">check</i>
+                </button>
+                <button className="x-button" onClick={() => absentStudent()}>
+                  <i class="material-icons">close</i>
+                </button>
+              </section>
+            )
+          })}
+        </ul>
+        <section>
+          <hr />
+          <h4>Absent Students</h4>
+          <hr />
+          <ul>
+            {students.map(student => {
+              return (
                 <section className="student-container">
                   <li key={student.id}>
                     {student.firstName} {student.lastName}
                   </li>{' '}
-                  <button onClick={() => checkInStudent(student)}>
-                    check in
+                  <button className="absent-button">
+                    <i class="material-icons">arrow_upward</i>
                   </button>
                 </section>
-              </div>
-            )
-          })}
-        </ul>
+              )
+            })}
+          </ul>
+          <hr />
+        </section>
       </main>
+
       <section>
         <button onClick={signOut}>sign out</button>
       </section>
-      {/* <footer>
-        <img src={pencil} className="apple-image" alt="apple for desktop app" />
-      </footer> */}
     </div>
   )
 }

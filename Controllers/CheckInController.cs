@@ -23,11 +23,19 @@ namespace sdg_react_template.Controllers
       this._context = context;
     }
 
+
+    [HttpGet("all")]
+
+    public async Task<ActionResult<List<StudentCheckIn>>> GetCheckIns()
+    {
+      return await _context.StudentCheckIns.ToListAsync();
+    }
+
     [HttpPost("{studentId}")]
     public async Task<ActionResult> CheckInStudent([FromRoute]int studentId)
     {
-      // var currentTeacherName = Teacher.Identity.Name;
-      // var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
+      var currentTeacherName = User.Identity.Name;
+      var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
       var exists = _context.Students.Any(student => student.Id == studentId);
       if (!exists)
       {
@@ -37,7 +45,8 @@ namespace sdg_react_template.Controllers
       {
         var checkIn = new StudentCheckIn
         {
-          StudentId = studentId
+          StudentId = studentId,
+          TeacherId = currentTeacher.Id
         };
         await _context.StudentCheckIns.AddAsync(checkIn);
         await _context.SaveChangesAsync();

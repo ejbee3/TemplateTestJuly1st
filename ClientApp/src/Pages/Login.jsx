@@ -22,7 +22,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="display-4">Log in!</h1>
+      <h1 className="display-4">Log in to teacher portal.</h1>
 
       <form onSubmit={submitForm}>
         <div className="form-group">

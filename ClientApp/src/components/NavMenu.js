@@ -44,19 +44,15 @@ export class NavMenu extends Component {
             <h2 className="title-font">Bueller?</h2>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse
+              color="#f5fffa"
               className="d-sm-inline-flex flex-sm-row-reverse"
               isOpen={!this.state.collapsed}
               navbar
             >
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="text-light" to="/">
-                    Home
-                  </NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink tag={Link} className="text-light" to="/manage">
-                    Manage Students
+                    Class Roster
                   </NavLink>
                 </NavItem>
                 <NavItem>

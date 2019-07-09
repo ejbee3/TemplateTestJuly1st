@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Do+Hyeon&display=swap');
+
+$font-stack: 'Do Hyeon', sans-serif;
+
+.font-change {
+  font-family: $font-stack;
+  color: navy;
+}
+
+.roster-container {
+  border: 3px solid navy;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roster-container li {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.delete-student {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: navy;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+  background: #0053ba;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}

@@ -36,7 +36,7 @@ export default function Register() {
             onChange={e => setFullName(e.target.value)}
           />
           <small id="nameHelp" className="form-text text-muted">
-            Name you would like to go by for your class.
+            Name you would like to go by for your class(es).
           </small>
         </div>
         <div className="form-group">
@@ -51,7 +51,7 @@ export default function Register() {
             placeholder="Enter email"
           />
           <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
+            Please use your work email.
           </small>
         </div>
         <div className="form-group">
