@@ -50,17 +50,17 @@ export class NavMenu extends Component {
               navbar
             >
               <ul className="navbar-nav flex-grow">
-                <NavItem>
+                <NavItem className="nav-links">
                   <NavLink tag={Link} className="text-light" to="/manage">
                     Class Roster
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="nav-links">
                   <NavLink tag={Link} className="text-light" to="/login">
                     Login
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem className="nav-links">
                   <NavLink tag={Link} className="text-light" to="/signup">
                     Sign up teacher
                   </NavLink>

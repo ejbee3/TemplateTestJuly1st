@@ -1,6 +1,8 @@
 import '../scss/TeacherPortal.scss'
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+import books from '../images/books.png'
+// import Moment from 'react-moment'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
@@ -36,12 +38,17 @@ export default function TeacherPortal() {
         }
       }
     ).then(resp => {
+      console.log(resp)
       setMessage(
-        `Student: ${student.firstName} was successfully checked in at time!`
+        `Student: ${student.firstName} was successfully checked in at  ${
+          resp.data.timeCheckedIn
+        }
+        )}!`
       )
     })
   }
 
+  console.log({ message })
   const absentStudent = () => {}
 
   const signOut = () => {
@@ -76,6 +83,7 @@ export default function TeacherPortal() {
                 <li key={student.id}>
                   {student.firstName} {student.lastName}
                 </li>{' '}
+                <img src={books} className="books-image" alt="books in pile" />
                 <button
                   className="check-button"
                   onClick={() => checkInStudent(student)}
@@ -94,11 +102,11 @@ export default function TeacherPortal() {
           <h4>Absent Students</h4>
           <hr />
           <ul>
-            {students.map(student => {
+            {students.map(s => {
               return (
                 <section className="student-container">
-                  <li key={student.id}>
-                    {student.firstName} {student.lastName}
+                  <li key={s.id}>
+                    {s.firstName} {s.lastName}
                   </li>{' '}
                   <button className="absent-button">
                     <i class="material-icons">arrow_upward</i>

@@ -20,6 +20,11 @@ header {
   border: 0.2rem solid goldenrod;
 }
 
+.nav-links {
+  font-family: 'Bangers', sans-serif;
+  font-size: 1.5rem;
+}
+
 .title-font {
   color: goldenrod;
   font-family: 'Bangers', sans-serif;

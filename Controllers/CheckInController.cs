@@ -50,7 +50,7 @@ namespace sdg_react_template.Controllers
         };
         await _context.StudentCheckIns.AddAsync(checkIn);
         await _context.SaveChangesAsync();
-        return Ok();
+        return Ok(checkIn);
       }
     }
   }
