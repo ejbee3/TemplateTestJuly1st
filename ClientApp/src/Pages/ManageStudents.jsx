@@ -77,21 +77,22 @@ export default class ManageStudents extends Component {
   </div>
 </div>
      */
-    
 
-    {
-      axios
-        .delete(`/api/student/${student.id}`, {
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
-        })
-        .then(resp => {
-          this.setState({
-            students: this.state.students.filter(f => f.id !== student.id)
+      {
+        axios
+          .delete(`/api/student/${student.id}`, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
           })
-        })
+          .then(resp => {
+            this.setState({
+              students: this.state.students.filter(f => f.id !== student.id)
+            })
+          })
+      }
     }
   }
-}
 
   updateValue = e => {
     const state = this.state
@@ -163,5 +164,3 @@ export default class ManageStudents extends Component {
     )
   }
 }
-}
-
