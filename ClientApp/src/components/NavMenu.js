@@ -10,7 +10,7 @@ import {
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './NavMenu.css'
-import ferris from '../images/ferris.jpg'
+import dogbone from '../images/dogbone.png'
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name
@@ -39,9 +39,9 @@ export class NavMenu extends Component {
         >
           <Container>
             <NavbarBrand tag={Link} to="/" className="text-light">
-              <img className="logo-pic" src={ferris} alt="bueller" />
+              <img className="logo-pic" src={dogbone} alt="bueller" />
             </NavbarBrand>{' '}
-            <h2 className="title-font">Bueller?</h2>
+            <h2 className="title-font">classfetch</h2>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse
               color="#f5fffa"

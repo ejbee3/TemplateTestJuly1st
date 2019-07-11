@@ -25,7 +25,7 @@ export default function Login() {
   return (
     <div>
       <section className="top-caption">
-        <h1 className="display-4">Log in to teacher portal.</h1>
+        <h1 className="display-4">Log in to fetch students.</h1>
         <img src={dog} alt="yellow dog running" className="login-image" />
       </section>
       <form onSubmit={submitForm}>
