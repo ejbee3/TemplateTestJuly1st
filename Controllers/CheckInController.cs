@@ -53,6 +53,32 @@ namespace sdg_react_template.Controllers
         return Ok(checkIn);
       }
     }
+
+    [HttpPost("absent/{studentId}")]
+
+    public async Task<ActionResult> LogAbsent([FromRoute] int studentId)
+    {
+      var currentTeacherName = User.Identity.Name;
+      var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
+      var exists = _context.Students.Any(student => student.Id == studentId);
+
+      if (!exists)
+      {
+        return NotFound();
+      }
+      else
+      {
+        var Absent = new StudentCheckIn
+        {
+          StudentId = studentId,
+          TeacherId = currentTeacher.Id,
+          IsCheckedIn = false
+        };
+        await _context.StudentCheckIns.AddAsync(Absent);
+        await _context.SaveChangesAsync();
+        return Ok(Absent);
+      }
+    }
   }
 }
 

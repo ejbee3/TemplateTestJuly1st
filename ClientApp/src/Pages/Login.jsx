@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import dog from '../images/dog-running.gif'
+import '../scss/Login.scss'
 
 export default function Login() {
   const [userName, setUserName] = useState('')
@@ -22,8 +24,10 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="display-4">Log in to teacher portal.</h1>
-
+      <section className="top-caption">
+        <h1 className="display-4">Log in to teacher portal.</h1>
+        <img src={dog} alt="yellow dog running" className="login-image" />
+      </section>
       <form onSubmit={submitForm}>
         <div className="form-group">
           <label for="exampleInputEmail1">Email address</label>

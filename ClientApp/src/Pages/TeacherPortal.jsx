@@ -1,7 +1,8 @@
 import '../scss/TeacherPortal.scss'
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import books from '../images/books.png'
+import drstrange from '../images/drstrange.gif'
+import sorcerersup from '../images/sorcerersup.gif'
 import { format } from 'date-fns'
 
 export default function TeacherPortal() {
@@ -47,8 +48,21 @@ export default function TeacherPortal() {
     })
   }
 
+  const logAbsent = student => {
+    Axios.post(
+      `/api/checkin/absent/${student.id}`,
+      {},
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }
+    ).then(resp => {
+      setMessage(`Student: ${student.firstName} was logged absent.`)
+    })
+  }
+
   console.log({ message })
-  const absentStudent = () => {}
 
   const signOut = () => {
     localStorage.clear()
@@ -60,6 +74,11 @@ export default function TeacherPortal() {
       <section className="teacher-info">
         <h2>Mrs. Wilson's class</h2>
         <h3>6th grade -- Science</h3>
+        <img
+          src={sorcerersup}
+          alt="sorcerer supreme saying excellent"
+          className="teacher-image"
+        />
       </section>
       <form onSubmit={getSearchResults}>
         <input
@@ -82,14 +101,18 @@ export default function TeacherPortal() {
                 <li key={student.id}>
                   {student.firstName} {student.lastName}
                 </li>{' '}
-                <img src={books} className="books-image" alt="books in pile" />
+                <img
+                  src={drstrange}
+                  className="desk-image"
+                  alt="books in pile"
+                />
                 <button
                   className="check-button"
                   onClick={() => checkInStudent(student)}
                 >
                   <i class="material-icons">check</i>
                 </button>
-                <button className="x-button" onClick={() => absentStudent()}>
+                <button className="x-button" onClick={() => logAbsent(student)}>
                   <i class="material-icons">close</i>
                 </button>
               </section>
