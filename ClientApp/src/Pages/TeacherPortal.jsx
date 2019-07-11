@@ -2,7 +2,7 @@ import '../scss/TeacherPortal.scss'
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import books from '../images/books.png'
-// import Moment from 'react-moment'
+import { format } from 'date-fns'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
@@ -38,12 +38,11 @@ export default function TeacherPortal() {
         }
       }
     ).then(resp => {
-      console.log(resp)
       setMessage(
-        `Student: ${student.firstName} was successfully checked in at  ${
-          resp.data.timeCheckedIn
-        }
-        )}!`
+        `Student: ${student.firstName} was successfully checked in at ${format(
+          new Date(resp.data.timeCheckedIn),
+          'hh:mm:ss A'
+        )}.`
       )
     })
   }
