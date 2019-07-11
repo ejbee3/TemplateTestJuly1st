@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import pawprint from '../images/pawprint.png'
+import '../scss/Register.scss'
 
 export default function Register() {
   const [userName, setUserName] = useState('')
@@ -22,7 +24,10 @@ export default function Register() {
 
   return (
     <div>
-      <h1 className="display-4">Sign up for a teacher account.</h1>
+      <section className="sign-up-caption">
+        <h1 className="display-4">Sign up for a teacher account.</h1>
+        <img src={pawprint} alt="diagonal paw prints" className="paw-prints" />
+      </section>
       <form onSubmit={submitForm}>
         <div className="form-group">
           <label for="fullNameExample">Full Name</label>

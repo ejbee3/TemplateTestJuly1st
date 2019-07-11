@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace TemplateTestJuly1st.Models
 {
@@ -11,7 +12,9 @@ namespace TemplateTestJuly1st.Models
     public string PasswordHash { get; set; }
 
     public string FullName { get; set; }
-    public string ClassName { get; set; }
+    public List<Class> Classes { get; set; }
+
+
     public string Email { get; set; }
 
 
