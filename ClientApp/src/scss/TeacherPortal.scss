@@ -103,6 +103,18 @@ ul {
   h3 {
     text-align: center;
   }
+}
+
+.black-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    font-size: 1.3rem;
+    padding: 0.8rem;
+  }
   .teacher-image {
     height: 6rem;
     width: 6rem;

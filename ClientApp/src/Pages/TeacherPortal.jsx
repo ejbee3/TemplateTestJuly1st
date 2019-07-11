@@ -73,12 +73,16 @@ export default function TeacherPortal() {
     <div>
       <section className="teacher-info">
         <h2>Mrs. Wilson's class</h2>
-        <h3>6th grade -- Science</h3>
-        <img
-          src={sorcerersup}
-          alt="sorcerer supreme saying excellent"
-          className="teacher-image"
-        />
+        <h3>6th grade -- Math</h3>
+        <section className="black-board">
+          <p>2x + y = 8</p>
+          <img
+            src={sorcerersup}
+            alt="sorcerer supreme saying excellent"
+            className="teacher-image"
+          />
+          <p>v = l x w x h</p>
+        </section>
       </section>
       <form onSubmit={getSearchResults}>
         <input

@@ -41,7 +41,7 @@ export default function Login() {
             placeholder="Enter email"
           />
           <small id="emailHelp" className="form-text text-muted">
-            Welcome Back
+            Welcome back.
           </small>
         </div>
         <div className="form-group">
