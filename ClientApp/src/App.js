@@ -17,7 +17,7 @@ export default class App extends Component {
         <Route exact path="/manage" component={ManageStudents} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Register} />
-        <Route exact path="/upload" component={UploadPhoto} />
+        <Route path="/upload" exact component={UploadPhoto} />
       </Layout>
     )
   }

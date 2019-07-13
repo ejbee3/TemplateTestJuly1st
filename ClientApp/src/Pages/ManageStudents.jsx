@@ -106,7 +106,7 @@ export default class ManageStudents extends Component {
             name="phoneNumber"
             onChange={this.updateValue}
           />
-          <button>create student</button>
+          <button>+</button>
         </form>
         <main>
           <hr />
