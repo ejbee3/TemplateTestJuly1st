@@ -3,8 +3,9 @@ import { Route } from 'react-router'
 import { Layout } from './components/Layout'
 import TeacherPortal from './Pages/TeacherPortal.jsx'
 import ManageStudents from './Pages/ManageStudents.jsx'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
+import Login from './Pages/Login.jsx'
+import Register from './Pages/Register.jsx'
+import UploadPhoto from './Pages/UploadPhoto.jsx'
 
 export default class App extends Component {
   static displayName = App.name
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route exact path="/manage" component={ManageStudents} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Register} />
+        <Route exact path="/upload" component={UploadPhoto} />
       </Layout>
     )
   }

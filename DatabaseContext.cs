@@ -50,5 +50,7 @@ namespace templatetestjuly1st
     public DbSet<StudentCheckIn> StudentCheckIns { get; set; }
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Class> Classes { get; set; }
+
+    public DbSet<Image> Images { get; set; }
   }
 }

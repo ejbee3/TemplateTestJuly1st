@@ -11,6 +11,7 @@ namespace content.ImageHelper
   public interface IImageHandler
   {
     Task<string> UploadImage(IFormFile file);
+    Task DeleteFile(string path);
   }
 
   public interface IImageWriter
@@ -31,6 +32,10 @@ namespace content.ImageHelper
     {
       var result = await _imageWriter.UploadImage(file);
       return result;
+    }
+    public async Task DeleteFile(string path)
+    {
+      File.Delete(path);
     }
   }
 

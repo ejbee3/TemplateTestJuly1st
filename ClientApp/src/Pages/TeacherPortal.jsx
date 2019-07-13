@@ -4,6 +4,7 @@ import Axios from 'axios'
 import drstrange from '../images/drstrange.gif'
 import sorcerersup from '../images/sorcerersup.gif'
 import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
@@ -147,6 +148,11 @@ export default function TeacherPortal() {
 
       <section>
         <button onClick={signOut}>sign out</button>
+      </section>
+      <section>
+        <Link className="upload-link" to="/upload">
+          <button className="upload-button">upload pic</button>
+        </Link>
       </section>
     </div>
   )

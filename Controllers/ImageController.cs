@@ -6,6 +6,7 @@ using content.ImageHelper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using TemplateTestJuly1st.Models;
 
 namespace content.Controllers
 {
@@ -25,7 +26,7 @@ namespace content.Controllers
     }
 
     /// <summary>
-    /// Uplaods an image to the server.
+    /// Uploads an image to the server.
     /// </summary>
     /// <param name="file"></param>
     /// <returns></returns>
@@ -36,7 +37,13 @@ namespace content.Controllers
       var path = await _imageHandler.UploadImage(file);
       var rv = new content.Helpers.CloudinaryStorage(_options.Value).UploadFile(path);
       // TODO: add to database
-      return Ok(rv);
+      var image = new Image
+      {
+        Url = rv.SecureUri.AbsoluteUri
+      };
+      await _imageHandler.DeleteFile(path);
+
+      return Ok(new { path, image });
     }
 
 
