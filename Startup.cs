@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
+using content.ImageHelper;
+using content.Helpers;
 
 namespace templatetestjuly1st
 {
@@ -47,6 +49,10 @@ namespace templatetestjuly1st
       {
         configuration.RootPath = "ClientApp/build";
       });
+
+      services.AddTransient<IImageHandler, ImageHandler>();
+      services.AddTransient<IImageWriter, ImageWriter>();
+      services.Configure<CloudinaryKeys>(opts => Configuration.Bind(opts));
 
       services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options =>
