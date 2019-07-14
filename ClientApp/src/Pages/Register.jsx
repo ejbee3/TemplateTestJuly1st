@@ -30,7 +30,7 @@ export default function Register() {
       </section>
       <form onSubmit={submitForm}>
         <div className="form-group">
-          <label for="fullNameExample">Full Name</label>
+          <label for="fullNameExample">Name</label>
           <input
             type="text"
             name="fullName"

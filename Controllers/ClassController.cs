@@ -22,12 +22,68 @@ namespace TemplateTestJuly1st.Controllers
       _context = context;
     }
 
-    // GET: api/Class
+    // GET: api/Class (get all classes)
     [HttpGet]
 
     public async Task<ActionResult<List<Class>>> GetClasses()
     {
       return await _context.Classes.ToListAsync();
+    }
+
+    // get one class based on classId
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Class>> GetClass(int id)
+    {
+      var singleClass = await _context.Classes.FindAsync(id);
+
+      if (singleClass == null)
+      {
+        return NotFound();
+      }
+
+      return singleClass;
+    }
+
+    [HttpPost("{teacherId}")]
+    public async Task<ActionResult<Class>> PostClass([FromRoute] int teacherId)
+    {
+      var currentTeacherName = User.Identity.Name;
+      var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
+      var exists = _context.Teachers.Any(teacher => teacher.Id == teacherId);
+      if (!exists)
+      {
+        return NotFound();
+      }
+      else
+      {
+        var newClass = new Class
+        {
+          TeacherId = currentTeacher.Id,
+          Teacher = currentTeacher
+        };
+
+        await _context.Classes.AddAsync(newClass);
+        await _context.SaveChangesAsync();
+        return Ok(newClass);
+      }
+
+
+    }
+
+    // DELETE: api/class/5
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Class>> DeleteClass(int id)
+    {
+      var singleClass = await _context.Classes.FindAsync(id);
+      if (singleClass == null)
+      {
+        return NotFound();
+      }
+
+      _context.Classes.Remove(singleClass);
+      await _context.SaveChangesAsync();
+
+      return singleClass;
     }
   }
 }
