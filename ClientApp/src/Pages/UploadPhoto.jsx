@@ -16,7 +16,6 @@ export default class UploadPhoto extends Component {
       formData.append('file', file)
       formData.append('timestamp', (Date.now() / 1000) | 0)
 
-      // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
       return axios
         .post('/api/image', formData, {
           headers: {
@@ -27,7 +26,7 @@ export default class UploadPhoto extends Component {
         .then(response => {
           console.log({ response })
           this.setState({
-            lastUploadedUrl: response.data.secure_url
+            lastUploadedUrl: response.data.image.url
           })
         })
     })

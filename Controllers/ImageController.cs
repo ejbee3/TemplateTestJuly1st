@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using TemplateTestJuly1st.Models;
 
+
 namespace content.Controllers
 {
   [Route("api/[controller]")]

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TemplateTestJuly1st.Models;
 using templatetestjuly1st;
+using TemplateTestJuly1st.ViewModel;
 
 namespace sdg_react_template.Controllers
 {
@@ -26,9 +27,22 @@ namespace sdg_react_template.Controllers
 
     [HttpGet("all")]
 
-    public async Task<ActionResult<List<StudentCheckIn>>> GetCheckIns()
+    public async Task<ActionResult<List<CheckInViewModel>>> GetCheckIns()
     {
-      return await _context.StudentCheckIns.Include(s => s.Student).ToListAsync();
+      var checkInList = _context.StudentCheckIns.Include(s => s.Student);
+
+      return await checkInList.Select(s => new CheckInViewModel
+      {
+        Id = s.Id,
+        TimeCheckedIn = s.TimeCheckedIn,
+        IsCheckedIn = s.IsCheckedIn,
+        StudentId = s.StudentId,
+        FirstName = s.Student.FirstName,
+        LastName = s.Student.LastName,
+        ClassId = s.Student.ClassId
+
+      }).ToListAsync();
+
     }
 
     [HttpPost("{studentId}")]
