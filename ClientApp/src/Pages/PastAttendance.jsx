@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { NavMenu } from '../components/NavMenu'
 
 export default function PastAttendance() {
   const [checkIns, setCheckIns] = useState([])
@@ -18,6 +19,7 @@ export default function PastAttendance() {
 
   return (
     <div>
+      <NavMenu />
       <section>
         <h3>Student attendance for your class:</h3>
       </section>

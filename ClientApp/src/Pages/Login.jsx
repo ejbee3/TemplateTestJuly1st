@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import dog from '../images/dog-running.gif'
 import '../scss/Login.scss'
+import { NavMenu } from '../components/NavMenu'
 
 export default function Login() {
   const [userName, setUserName] = useState('')
@@ -24,6 +25,7 @@ export default function Login() {
 
   return (
     <div>
+      <NavMenu />
       <section className="top-caption">
         <h1 className="display-4">Log in to fetch students.</h1>
         <img src={dog} alt="yellow dog running" className="login-image" />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../scss/ManageStudents.scss'
+import { NavMenu } from '../components/NavMenu'
 
 export default function ManageStudents() {
   const [students, setStudents] = useState([])
@@ -72,6 +73,7 @@ export default function ManageStudents() {
 
   return (
     <div>
+      <NavMenu />
       <h4 className="font-change">New Student?</h4>
       <form onSubmit={addNewStudent}>
         <input

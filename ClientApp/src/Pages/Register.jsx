@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Axios from 'axios'
 import pawprint from '../images/pawprint.png'
 import '../scss/Register.scss'
+import { NavMenu } from '../components/NavMenu'
 
 export default function Register() {
   const [userName, setUserName] = useState('')
@@ -24,6 +25,7 @@ export default function Register() {
 
   return (
     <div>
+      <NavMenu />
       <section className="sign-up-caption">
         <h1 className="display-4">Sign up for a teacher account.</h1>
         <img src={pawprint} alt="diagonal paw prints" className="paw-prints" />

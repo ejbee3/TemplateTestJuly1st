@@ -5,6 +5,7 @@ import drstrange from '../images/drstrange.gif'
 import sorcerersup from '../images/sorcerersup.gif'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
+import { NavMenu } from '../components/NavMenu'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
@@ -72,6 +73,7 @@ export default function TeacherPortal() {
 
   return (
     <div>
+      <NavMenu />
       <section className="teacher-info">
         <h2>Today's Session</h2>
         <h3>Wilson, 6th grade Math</h3>
@@ -159,6 +161,9 @@ export default function TeacherPortal() {
           <button className="past-button">past attendance</button>
         </Link>
       </section>
+      <Link className="splash-link" to="/splash">
+        <button className="splash-button">splash</button>
+      </Link>
     </div>
   )
 }
