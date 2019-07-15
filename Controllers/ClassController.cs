@@ -27,7 +27,8 @@ namespace TemplateTestJuly1st.Controllers
 
     public async Task<ActionResult<List<Class>>> GetClasses()
     {
-      return await _context.Classes.ToListAsync();
+
+      return await _context.Classes.Include(s => s.Students).ToListAsync();
     }
 
     // get one class based on classId
@@ -59,7 +60,8 @@ namespace TemplateTestJuly1st.Controllers
         var newClass = new Class
         {
           TeacherId = currentTeacher.Id,
-          Teacher = currentTeacher
+          Teacher = currentTeacher,
+
         };
 
         await _context.Classes.AddAsync(newClass);

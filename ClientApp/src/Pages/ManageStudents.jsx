@@ -1,27 +1,26 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../scss/ManageStudents.scss'
 
-export default class ManageStudents extends Component {
-  state = {
-    students: [],
-    student: {}
-  }
+export default function ManageStudents() {
+  const [students, setStudents] = useState([])
+  const [student, setStudent] = useState({})
+  const [newClass, setNewClass] = useState({})
+  const [classes, setClasses] = useState([])
 
-  componentDidMount() {
+  useEffect(() => {
     axios
-      .get('/api/student', {
+      .get('/api/class', {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       })
       .then(resp => {
         console.log(resp.data)
-        this.setState({
-          students: resp.data
-        })
+        setClasses(resp.data)
+        setStudents(resp.data.Students)
       })
-  }
+  }, [])
 
-  addNewStudent = e => {
+  const addNewStudent = e => {
     e.preventDefault()
     axios
       .post('/api/student', this.state.student, {
@@ -43,7 +42,7 @@ export default class ManageStudents extends Component {
     e.target.reset()
   }
 
-  deleteStudent = student => {
+  const deleteStudent = student => {
     if (
       window.confirm(
         `Are you sure you want to delete ${student.firstName} ${
@@ -65,73 +64,66 @@ export default class ManageStudents extends Component {
     }
   }
 
-  updateValue = e => {
+  const updateValue = e => {
     const state = this.state
     state.student[e.target.name] = e.target.value
     this.setState(state)
   }
 
-  render() {
-    return (
-      <div>
-        <h4 className="font-change">New Student?</h4>
-        <form onSubmit={this.addNewStudent}>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="firstName"
-            onChange={this.updateValue}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            onChange={this.updateValue}
-          />
-          <input
-            type="text"
-            placeholder="Grade"
-            name="grade"
-            onChange={this.updateValue}
-          />
-          <input
-            type="text"
-            placeholder="Age"
-            name="age"
-            onChange={this.updateValue}
-          />
-          <input
-            type="text"
-            placeholder="Phone Number"
-            name="phoneNumber"
-            onChange={this.updateValue}
-          />
-          <button>+</button>
-        </form>
-        <main>
-          <hr />
-          <h4>Class Roster for your class:</h4>
-          <hr />
-          <ul>
-            {this.state.students.map(student => {
-              return (
-                <section className="roster-container">
-                  <li key={student.id} className="students">
-                    {student.firstName} {student.lastName}
-                  </li>{' '}
-                  <button
-                    className="delete-student"
-                    onClick={() => this.deleteStudent(student)}
-                  >
-                    <i class="material-icons">cancel</i>
-                  </button>
-                </section>
-              )
-            })}
-          </ul>
-          <hr />
-        </main>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h4 className="font-change">New Student?</h4>
+      <form onSubmit={addNewStudent}>
+        <input
+          type="text"
+          placeholder="First Name"
+          name="firstName"
+          onChange={updateValue}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          name="lastName"
+          onChange={updateValue}
+        />
+
+        <input
+          type="text"
+          placeholder="Age"
+          name="age"
+          onChange={updateValue}
+        />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          name="phoneNumber"
+          onChange={updateValue}
+        />
+        <button>+</button>
+      </form>
+      <main>
+        <hr />
+        <h4>Class Roster for your class:</h4>
+        <hr />
+        <ul>
+          {this.state.students.map(student => {
+            return (
+              <section className="roster-container">
+                <li key={student.id} className="students">
+                  {student.firstName} {student.lastName}
+                </li>{' '}
+                <button
+                  className="delete-student"
+                  onClick={() => deleteStudent(student)}
+                >
+                  <i class="material-icons">cancel</i>
+                </button>
+              </section>
+            )
+          })}
+        </ul>
+        <hr />
+      </main>
+    </div>
+  )
 }
