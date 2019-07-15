@@ -73,8 +73,8 @@ export default function TeacherPortal() {
   return (
     <div>
       <section className="teacher-info">
-        <h2>Mrs. Wilson's class</h2>
-        <h3>6th grade -- Math</h3>
+        <h2>Today's Session</h2>
+        <h3>Wilson, 6th grade Math</h3>
         <section className="black-board">
           <p>2x + y = 8</p>
           <img
@@ -152,6 +152,11 @@ export default function TeacherPortal() {
       <section>
         <Link className="upload-link" to="/upload">
           <button className="upload-button">upload pic</button>
+        </Link>
+      </section>
+      <section>
+        <Link className="past-attendance" to="/past">
+          <button className="past-button">past attendance</button>
         </Link>
       </section>
     </div>

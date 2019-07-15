@@ -20,6 +20,10 @@ header {
   border: 0.2rem solid goldenrod;
 }
 
+.logo-pic:hover {
+  border: 0.2rem solid whitesmoke;
+}
+
 .nav-links {
   font-family: 'Bangers', sans-serif;
   font-size: 1.5rem;
