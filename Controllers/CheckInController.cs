@@ -28,7 +28,7 @@ namespace sdg_react_template.Controllers
 
     public async Task<ActionResult<List<StudentCheckIn>>> GetCheckIns()
     {
-      return await _context.StudentCheckIns.ToListAsync();
+      return await _context.StudentCheckIns.Include(s => s.Student).ToListAsync();
     }
 
     [HttpPost("{studentId}")]
@@ -37,6 +37,7 @@ namespace sdg_react_template.Controllers
       var currentTeacherName = User.Identity.Name;
       var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
       var exists = _context.Students.Any(student => student.Id == studentId);
+      var currentStudent = _context.Students.FirstOrDefault(s => s.Id == studentId);
       if (!exists)
       {
         return NotFound();
@@ -46,7 +47,8 @@ namespace sdg_react_template.Controllers
         var checkIn = new StudentCheckIn
         {
           StudentId = studentId,
-          TeacherId = currentTeacher.Id
+          TeacherId = currentTeacher.Id,
+          Student = currentStudent
         };
         await _context.StudentCheckIns.AddAsync(checkIn);
         await _context.SaveChangesAsync();
@@ -61,6 +63,7 @@ namespace sdg_react_template.Controllers
       var currentTeacherName = User.Identity.Name;
       var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
       var exists = _context.Students.Any(student => student.Id == studentId);
+      var currentStudent = _context.Students.Include(c => c.StudentCheckIns).FirstOrDefault(s => s.Id == studentId);
 
       if (!exists)
       {
@@ -72,7 +75,8 @@ namespace sdg_react_template.Controllers
         {
           StudentId = studentId,
           TeacherId = currentTeacher.Id,
-          IsCheckedIn = false
+          IsCheckedIn = false,
+          Student = currentStudent
         };
         await _context.StudentCheckIns.AddAsync(Absent);
         await _context.SaveChangesAsync();
