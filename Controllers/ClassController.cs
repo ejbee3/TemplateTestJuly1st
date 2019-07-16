@@ -46,7 +46,7 @@ namespace TemplateTestJuly1st.Controllers
     }
 
     [HttpPost("{teacherId}")]
-    public async Task<ActionResult<Class>> PostClass([FromRoute] int teacherId)
+    public async Task<ActionResult<Class>> PostClass([FromRoute] int teacherId, Class newClass)
     {
       var currentTeacherName = User.Identity.Name;
       var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
@@ -57,12 +57,6 @@ namespace TemplateTestJuly1st.Controllers
       }
       else
       {
-        var newClass = new Class
-        {
-          TeacherId = currentTeacher.Id,
-          Teacher = currentTeacher,
-
-        };
 
         await _context.Classes.AddAsync(newClass);
         await _context.SaveChangesAsync();
