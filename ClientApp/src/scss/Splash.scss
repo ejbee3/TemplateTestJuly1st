@@ -21,9 +21,11 @@
     }
 
     .splash-logo {
-      height: 2.5rem;
-      width: 2.5rem;
-      border: 3px solid #f5fffa;
+      height: 13.5rem;
+      width: 14.5rem;
+
+      display: block;
+      margin: 0 auto;
     }
 
     .description {
@@ -43,9 +45,41 @@
         margin: 0 1rem 0 1rem;
         background-color: goldenrod;
       }
+      .chalk2 {
+        height: 0.5rem;
+        width: 1.5rem;
+        margin: 0 1rem 0 1rem;
+        background-color: #80b8e9;
+      }
+      .chalk3 {
+        height: 0.5rem;
+        width: 2.2rem;
+        margin: 0 1rem 0 1rem;
+        background-color: #e9658f;
+      }
+      .chalk4 {
+        height: 0.5rem;
+        width: 1.8rem;
+        margin: 0 1rem 0 1rem;
+        background-color: #7637a0;
+      }
     }
   }
 
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #e9658f;
+      color: #f5fffa;
+      margin: 1rem;
+      border: 3px solid #343434;
+    }
+  }
   .ledge-container {
     background-color: #69564e;
     height: 1rem;

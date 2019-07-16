@@ -19,7 +19,7 @@ export default function ManageStudents() {
       .then(resp => {
         console.log(resp.data)
         setClasses(resp.data)
-        setStudents(resp.data.Students)
+        setStudents(resp.data.students)
       })
   }, [])
 

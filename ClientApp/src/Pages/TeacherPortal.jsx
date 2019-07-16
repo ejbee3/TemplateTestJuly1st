@@ -17,7 +17,7 @@ export default function TeacherPortal() {
   const [message, setMessage] = useState('')
   // const [isCheckedIn, setIsCheckedIn] = useState(false)
   // const [isAbsent, setIsAbsent] = useState(false)
-  const [checkedInStudents, setcheckedInStudents] = useState([])
+  const [checkedInStudents, setCheckedInStudents] = useState([])
   const [absentStudents, setAbsentStudents] = useState([])
 
   useEffect(() => {
@@ -55,6 +55,8 @@ export default function TeacherPortal() {
           'hh:mm:ss A'
         )}.`
       )
+      setCheckedInStudents(st => st.concat(student))
+      setStudents(st => st.filter(s => s.id !== student.id))
     })
   }
 
@@ -69,7 +71,19 @@ export default function TeacherPortal() {
       }
     ).then(resp => {
       setMessage(`Student: ${student.firstName} was logged absent.`)
+      setAbsentStudents(st => st.concat(student))
+      setStudents(st => st.filter(s => s.id !== student.id))
     })
+  }
+
+  const redoCheckIn = student => {
+    setStudents(st => st.concat(student))
+    setCheckedInStudents(st => st.filter(s => s.id !== student.id))
+  }
+
+  const redoAbsent = student => {
+    setStudents(st => st.concat(student))
+    setAbsentStudents(st => st.filter(s => s.id !== student.id))
   }
 
   console.log({ message })
@@ -139,26 +153,19 @@ export default function TeacherPortal() {
           <h4>Checked in students</h4>
           <hr />
           <ul>
-            {/* I'm mapping an array of students when I want to just move one student to absent or checked in */}
-
-            {/* {isCheckedIn ? (
-              students
-                .filter(s => s.isCheckedIn)
-                .map(s => {
-                  return (
-                    <section className="student-container">
-                      <li key={s.id}>
-                        {s.firstName} {s.lastName}
-                      </li>{' '}
-                      <button className="absent-button">
-                        <i class="material-icons">arrow_upward</i>
-                      </button>
-                    </section>
-                  )
-                })
-            ) : (
-              <p>No students checked in yet!</p>
-            )} */}
+            {checkedInStudents.map(s => {
+              return (
+                <section className="student-container">
+                  <li key={s.id}>
+                    {s.firstName} {s.lastName}
+                  </li>{' '}
+                  <button onClick={redoCheckIn} className="absent-button">
+                    <i class="material-icons">arrow_upward</i>
+                  </button>
+                  <i class="fas fa-dog dog-icon" />
+                </section>
+              )
+            })}
           </ul>
         </section>
         <section>
@@ -166,24 +173,19 @@ export default function TeacherPortal() {
           <h4>Absent students</h4>
           <hr />
           <ul>
-            {/* {isAbsent ? (
-              students
-                .filter(s => s.isAbsent)
-                .map(s => {
-                  return (
-                    <section className="student-container">
-                      <li key={s.id}>
-                        {s.firstName} {s.lastName}
-                      </li>{' '}
-                      <button className="absent-button">
-                        <i class="material-icons">arrow_upward</i>
-                      </button>
-                    </section>
-                  )
-                })
-            ) : (
-              <p>No Absences Yet!</p>
-            )} */}
+            {absentStudents.map(s => {
+              return (
+                <section className="student-container">
+                  <li key={s.id}>
+                    {s.firstName} {s.lastName}
+                  </li>{' '}
+                  <button onClick={redoAbsent} className="absent-button">
+                    <i class="material-icons">arrow_upward</i>
+                  </button>
+                  <i class="fas fa-dog dog-icon" />
+                </section>
+              )
+            })}
           </ul>
           <hr />
         </section>
