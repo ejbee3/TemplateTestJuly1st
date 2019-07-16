@@ -26,21 +26,17 @@ export default function ManageStudents() {
   const addNewStudent = e => {
     e.preventDefault()
     axios
-      .post('/api/student', this.state.student, {
+      .post('/api/student', students, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       })
       .then(resp => {
-        this.setState({
-          student: resp.data
-        })
+        setStudent(resp.data)
       })
       .then(resp => {
-        this.setState({
-          students: this.state.students.concat(this.state.student),
-          student: {}
-        })
-        console.log(this.state.students)
+        setStudents(students.concat(student))
+        setStudent({})
       })
+    console.log(students)
 
     e.target.reset()
   }
@@ -60,9 +56,7 @@ export default function ManageStudents() {
           }
         })
         .then(resp => {
-          this.setState({
-            students: this.state.students.filter(f => f.id !== student.id)
-          })
+          setStudents(students.filter(f => f.id !== student.id))
         })
     }
   }
@@ -133,7 +127,7 @@ export default function ManageStudents() {
         </section>
         <hr />
         <ul>
-          {/* {students.map(student => {
+          {students.map(student => {
             return (
               <section className="roster-container">
                 <li key={student.id} className="students">
@@ -147,7 +141,7 @@ export default function ManageStudents() {
                 </button>
               </section>
             )
-          })} */}
+          })}
         </ul>
         <hr />
       </main>
