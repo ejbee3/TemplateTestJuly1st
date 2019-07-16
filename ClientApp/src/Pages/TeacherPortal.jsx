@@ -141,18 +141,20 @@ export default function TeacherPortal() {
             {/* I'm mapping an array of students when I want to just move one student to absent or checked in */}
 
             {isCheckedIn ? (
-              students.map(s => {
-                return (
-                  <section className="student-container">
-                    <li key={s.id}>
-                      {s.firstName} {s.lastName}
-                    </li>{' '}
-                    <button className="absent-button">
-                      <i class="material-icons">arrow_upward</i>
-                    </button>
-                  </section>
-                )
-              })
+              students
+                .filter(s => s.isCheckedIn)
+                .map(s => {
+                  return (
+                    <section className="student-container">
+                      <li key={s.id}>
+                        {s.firstName} {s.lastName}
+                      </li>{' '}
+                      <button className="absent-button">
+                        <i class="material-icons">arrow_upward</i>
+                      </button>
+                    </section>
+                  )
+                })
             ) : (
               <p>No students checked in yet!</p>
             )}
@@ -164,18 +166,20 @@ export default function TeacherPortal() {
           <hr />
           <ul>
             {isAbsent ? (
-              students.map(s => {
-                return (
-                  <section className="student-container">
-                    <li key={s.id}>
-                      {s.firstName} {s.lastName}
-                    </li>{' '}
-                    <button className="absent-button">
-                      <i class="material-icons">arrow_upward</i>
-                    </button>
-                  </section>
-                )
-              })
+              students
+                .filter(s => s.isAbsent)
+                .map(s => {
+                  return (
+                    <section className="student-container">
+                      <li key={s.id}>
+                        {s.firstName} {s.lastName}
+                      </li>{' '}
+                      <button className="absent-button">
+                        <i class="material-icons">arrow_upward</i>
+                      </button>
+                    </section>
+                  )
+                })
             ) : (
               <p>No Absences Yet!</p>
             )}

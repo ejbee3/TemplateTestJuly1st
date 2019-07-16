@@ -48,8 +48,8 @@ namespace TemplateTestJuly1st.Controllers
     [HttpPost("{teacherId}")]
     public async Task<ActionResult<Class>> PostClass([FromRoute] int teacherId, Class newClass)
     {
-      var currentTeacherName = User.Identity.Name;
-      var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
+      // var currentTeacherName = User.Identity.Name;
+      // var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
       var exists = _context.Teachers.Any(teacher => teacher.Id == teacherId);
       if (!exists)
       {
@@ -57,11 +57,10 @@ namespace TemplateTestJuly1st.Controllers
       }
       else
       {
-
+        newClass.TeacherId = teacherId;
         await _context.Classes.AddAsync(newClass);
         await _context.SaveChangesAsync();
-        return CreatedAtAction("GetClass", new { id = newClass.Id }, newClass);
-        //  return Ok(newClass); what is the difference?
+        return Ok(newClass);
       }
 
 

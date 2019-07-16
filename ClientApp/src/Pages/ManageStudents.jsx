@@ -8,6 +8,7 @@ export default function ManageStudents() {
   const [student, setStudent] = useState({})
   const [newClass, setNewClass] = useState({})
   const [classes, setClasses] = useState([])
+  const [teacher, setTeacher] = useState({})
 
   useEffect(() => {
     axios
@@ -108,7 +109,7 @@ export default function ManageStudents() {
         <h4>Class Roster for your class:</h4>
         <hr />
         <ul>
-          {this.state.students.map(student => {
+          {/* {students.map(student => {
             return (
               <section className="roster-container">
                 <li key={student.id} className="students">
@@ -122,7 +123,7 @@ export default function ManageStudents() {
                 </button>
               </section>
             )
-          })}
+          })} */}
         </ul>
         <hr />
       </main>
