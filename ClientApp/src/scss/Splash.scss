@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+.big-container {
+  display: flex;
+  flex-direction: column;
+
+  .main-container {
+    margin: 2rem 2rem 0 2rem;
+    background-color: #003400;
+    border-top: 5px solid #836c62;
+    border-left: 5px solid #836c62;
+    border-right: 5px solid #836c62;
+
+    color: #f5fffa;
+
+    .splash-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.5rem;
+      padding-left: 0.4rem;
+    }
+
+    .splash-logo {
+      height: 2.5rem;
+      width: 2.5rem;
+      border: 3px solid #f5fffa;
+    }
+
+    .description {
+      font-family: 'Montserrat', sans-serif;
+      padding: 0.5rem;
+    }
+
+    .chalk-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .chalk {
+        height: 0.5rem;
+        width: 2rem;
+        margin: 0 1rem 0 1rem;
+        background-color: goldenrod;
+      }
+    }
+  }
+
+  .ledge-container {
+    background-color: #69564e;
+    height: 1rem;
+    width: 93vw;
+    margin: 0 1rem 0 1rem;
+  }
+}
+
+div > span {
+  padding: 0 0.5rem 0 0.5rem;
+}
