@@ -23,6 +23,7 @@ export default function PastAttendance() {
       <section>
         <h3>Student attendance for your class:</h3>
       </section>
+      {/* this should be a map of student check ins}
       {/* <section>
         <ul>
           {checkIns.map(checkIn => {

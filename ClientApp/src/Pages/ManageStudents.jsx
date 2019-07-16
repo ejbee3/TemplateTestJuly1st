@@ -10,6 +10,7 @@ export default function ManageStudents() {
   const [classes, setClasses] = useState([])
   const [teacher, setTeacher] = useState({})
 
+  // CONVERT TO HOOKS
   useEffect(() => {
     axios
       .get('/api/class', {

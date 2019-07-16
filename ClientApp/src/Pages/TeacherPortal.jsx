@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 import { NavMenu } from '../components/NavMenu'
 
 export default function TeacherPortal() {
+  // NEED TO USE OBJECT ORIENTED PROGRAMMING TO
+  // SET ABSENT/PRESENT PROPERTY IN STUDENT OBJECT
+
   const [students, setStudents] = useState([])
 
   const [searchTerm, setSearchTerm] = useState('')
