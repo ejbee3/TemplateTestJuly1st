@@ -38,7 +38,7 @@ export class NavMenu extends Component {
           light
         >
           <Container>
-            <NavbarBrand tag={Link} to="/" className="text-light">
+            <NavbarBrand tag={Link} to="/teach" className="text-light">
               <img className="logo-pic" src={dogbone} alt="bueller" />
             </NavbarBrand>{' '}
             <h2 className="title-font">classfetch</h2>

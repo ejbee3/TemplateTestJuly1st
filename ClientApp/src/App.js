@@ -14,13 +14,13 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Route exact path="/" component={TeacherPortal} />
+        <Route exact path="/" component={Splash} />
+        <Route exact path="/teach" component={TeacherPortal} />
         <Route exact path="/manage" component={ManageStudents} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Register} />
         <Route exact path="/upload" component={UploadPhoto} />
-        <Route exact path="/past" component={PastAttendance} />
-        <Route exact path="/splash" component={Splash} />{' '}
+        <Route exact path="/past" component={PastAttendance} />{' '}
       </>
     )
   }
