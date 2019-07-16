@@ -11,6 +11,8 @@ export default function TeacherPortal() {
   const [students, setStudents] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [message, setMessage] = useState('')
+  const [isCheckedIn, setIsCheckedIn] = useState('')
+  const [isAbsent, setIsAbsent] = useState('')
 
   useEffect(() => {
     Axios.get('/api/student', {
@@ -47,6 +49,8 @@ export default function TeacherPortal() {
           'hh:mm:ss A'
         )}.`
       )
+      setIsCheckedIn(true)
+      setIsAbsent(false)
     })
   }
 
@@ -61,6 +65,8 @@ export default function TeacherPortal() {
       }
     ).then(resp => {
       setMessage(`Student: ${student.firstName} was logged absent.`)
+      setIsCheckedIn(false)
+      setIsAbsent(true)
     })
   }
 
@@ -128,21 +134,48 @@ export default function TeacherPortal() {
         </ul>
         <section>
           <hr />
-          <h4>Absent Students</h4>
+          <h4>Checked in students</h4>
           <hr />
           <ul>
-            {students.map(s => {
-              return (
-                <section className="student-container">
-                  <li key={s.id}>
-                    {s.firstName} {s.lastName}
-                  </li>{' '}
-                  <button className="absent-button">
-                    <i class="material-icons">arrow_upward</i>
-                  </button>
-                </section>
-              )
-            })}
+            {isCheckedIn ? (
+              students.map(s => {
+                return (
+                  <section className="student-container">
+                    <li key={s.id}>
+                      {s.firstName} {s.lastName}
+                    </li>{' '}
+                    <button className="absent-button">
+                      <i class="material-icons">arrow_upward</i>
+                    </button>
+                  </section>
+                )
+              })
+            ) : (
+              <p>No students checked in yet!</p>
+            )}
+          </ul>
+        </section>
+        <section>
+          <hr />
+          <h4>Absent students</h4>
+          <hr />
+          <ul>
+            {isAbsent ? (
+              students.map(s => {
+                return (
+                  <section className="student-container">
+                    <li key={s.id}>
+                      {s.firstName} {s.lastName}
+                    </li>{' '}
+                    <button className="absent-button">
+                      <i class="material-icons">arrow_upward</i>
+                    </button>
+                  </section>
+                )
+              })
+            ) : (
+              <p>No Absences Yet!</p>
+            )}
           </ul>
           <hr />
         </section>

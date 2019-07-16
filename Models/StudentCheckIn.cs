@@ -8,6 +8,7 @@ namespace TemplateTestJuly1st.Models
     public DateTime TimeCheckedIn { get; set; } = DateTime.Now;
 
     public bool IsCheckedIn { get; set; } = true;
+    public bool IsTardy { get; set; } = false;
 
     public int StudentId { get; set; }
     public Student Student { get; set; }

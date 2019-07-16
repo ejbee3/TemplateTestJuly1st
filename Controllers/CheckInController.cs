@@ -97,6 +97,36 @@ namespace sdg_react_template.Controllers
         return Ok(Absent);
       }
     }
+
+    [HttpPost("tardy/{studentId}")]
+
+    public async Task<ActionResult> LogTardy([FromRoute] int studentId)
+    {
+      var currentTeacherName = User.Identity.Name;
+      var currentTeacher = _context.Teachers.FirstOrDefault(t => t.UserName == currentTeacherName);
+      var exists = _context.Students.Any(student => student.Id == studentId);
+      var currentStudent = _context.Students.Include(c => c.StudentCheckIns).FirstOrDefault(s => s.Id == studentId);
+
+      if (!exists)
+      {
+        return NotFound();
+      }
+      else
+      {
+        var tardy = new StudentCheckIn
+        {
+          StudentId = studentId,
+          TeacherId = currentTeacher.Id,
+          IsTardy = true,
+          Student = currentStudent
+        };
+        await _context.StudentCheckIns.AddAsync(tardy);
+        await _context.SaveChangesAsync();
+        return Ok(tardy);
+      }
+    }
+
+
   }
 }
 
