@@ -66,6 +66,24 @@ export default function ManageStudents() {
     }
   }
 
+  const addClass = e => {
+    e.preventDefault()
+    axios
+      .post('/api/class', newClass, {
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+      })
+      .then(resp => {
+        setNewClass(resp.data)
+      })
+      .then(resp => {
+        setClasses(classes.concat(newClass))
+        setNewClass({})
+        console.log(classes)
+      })
+
+    e.target.reset()
+  }
+
   const updateValue = e => {
     const state = this.state
     state.student[e.target.name] = e.target.value
@@ -106,7 +124,12 @@ export default function ManageStudents() {
       </form>
       <main>
         <hr />
-        <h4>Class Roster for your class:</h4>
+        <section>
+          <h4>Add a roster for your class:</h4>
+          <form onSubmit={addClass}>
+            <button>+</button>
+          </form>
+        </section>
         <hr />
         <ul>
           {/* {students.map(student => {

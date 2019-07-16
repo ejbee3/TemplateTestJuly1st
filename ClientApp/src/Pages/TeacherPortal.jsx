@@ -9,11 +9,13 @@ import { NavMenu } from '../components/NavMenu'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
-  const [oneStudent, setOneStudent] = useState({})
+
   const [searchTerm, setSearchTerm] = useState('')
   const [message, setMessage] = useState('')
-  const [isCheckedIn, setIsCheckedIn] = useState('')
-  const [isAbsent, setIsAbsent] = useState('')
+  // const [isCheckedIn, setIsCheckedIn] = useState(false)
+  // const [isAbsent, setIsAbsent] = useState(false)
+  const [checkedInStudents, setcheckedInStudents] = useState([])
+  const [absentStudents, setAbsentStudents] = useState([])
 
   useEffect(() => {
     Axios.get('/api/student', {
@@ -50,8 +52,6 @@ export default function TeacherPortal() {
           'hh:mm:ss A'
         )}.`
       )
-      setIsCheckedIn(true)
-      setIsAbsent(false)
     })
   }
 
@@ -66,8 +66,6 @@ export default function TeacherPortal() {
       }
     ).then(resp => {
       setMessage(`Student: ${student.firstName} was logged absent.`)
-      setIsCheckedIn(false)
-      setIsAbsent(true)
     })
   }
 
@@ -140,7 +138,7 @@ export default function TeacherPortal() {
           <ul>
             {/* I'm mapping an array of students when I want to just move one student to absent or checked in */}
 
-            {isCheckedIn ? (
+            {/* {isCheckedIn ? (
               students
                 .filter(s => s.isCheckedIn)
                 .map(s => {
@@ -157,7 +155,7 @@ export default function TeacherPortal() {
                 })
             ) : (
               <p>No students checked in yet!</p>
-            )}
+            )} */}
           </ul>
         </section>
         <section>
@@ -165,7 +163,7 @@ export default function TeacherPortal() {
           <h4>Absent students</h4>
           <hr />
           <ul>
-            {isAbsent ? (
+            {/* {isAbsent ? (
               students
                 .filter(s => s.isAbsent)
                 .map(s => {
@@ -182,7 +180,7 @@ export default function TeacherPortal() {
                 })
             ) : (
               <p>No Absences Yet!</p>
-            )}
+            )} */}
           </ul>
           <hr />
         </section>
