@@ -9,6 +9,7 @@ import { NavMenu } from '../components/NavMenu'
 
 export default function TeacherPortal() {
   const [students, setStudents] = useState([])
+  const [oneStudent, setOneStudent] = useState({})
   const [searchTerm, setSearchTerm] = useState('')
   const [message, setMessage] = useState('')
   const [isCheckedIn, setIsCheckedIn] = useState('')
@@ -137,6 +138,8 @@ export default function TeacherPortal() {
           <h4>Checked in students</h4>
           <hr />
           <ul>
+            {/* I'm mapping an array of students when I want to just move one student to absent or checked in */}
+
             {isCheckedIn ? (
               students.map(s => {
                 return (

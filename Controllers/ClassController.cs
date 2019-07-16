@@ -60,7 +60,8 @@ namespace TemplateTestJuly1st.Controllers
 
         await _context.Classes.AddAsync(newClass);
         await _context.SaveChangesAsync();
-        return Ok(newClass);
+        return CreatedAtAction("GetClass", new { id = newClass.Id }, newClass);
+        //  return Ok(newClass); what is the difference?
       }
 
 
