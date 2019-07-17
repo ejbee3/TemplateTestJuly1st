@@ -10,7 +10,6 @@ export default function ManageStudents() {
   const [classes, setClasses] = useState([])
   const [teacher, setTeacher] = useState({})
 
-  // CONVERT TO HOOKS
   useEffect(() => {
     axios
       .get('/api/class', {
@@ -20,6 +19,7 @@ export default function ManageStudents() {
         console.log(resp.data)
         setClasses(resp.data)
         setStudents(resp.data.students)
+        // this doesn't work b/c back end
       })
   }, [])
 
