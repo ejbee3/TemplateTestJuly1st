@@ -37,22 +37,22 @@ namespace sdg_react_template.Controllers
     }
 
     // GET: api/Student/5 from class
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Student>> GetStudent(int id, [FromQuery] int? ClassId)
-    {
-      if (ClassId == null)
-      {
-        return NotFound();
-      }
-      var student = await _context.Classes
-      .Include(s => s.Students)
-      .FirstOrDefaultAsync(c => c.Id == ClassId)
-      .Students.FirstOrDefaultAsync(st => st.Id);
+    // [HttpGet("{id}")]
+    // public async Task<ActionResult<Student>> GetStudent(int id, [FromQuery] int? ClassId)
+    // {
+    //   if (ClassId == null)
+    //   {
+    //     return NotFound();
+    //   }
+    //   var student = await _context.Classes
+    //   .Include(s => s.Students)
+    //   .FirstOrDefaultAsync(c => c.Id == ClassId)
+    //   .Students.FirstOrDefaultAsync(st => st.Id == id);
 
 
 
-      return student;
-    }
+    //   return student;
+    // }
 
     // PUT: api/Student/5
     [HttpPut("{id}")]

@@ -74,6 +74,7 @@ export default function Splash() {
           {loginMessage}
         </button>
       </section>
+      <footer>EJBIII &copy; 2019</footer>
     </div>
   )
 }

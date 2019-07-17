@@ -77,7 +77,13 @@
       background-color: #e9658f;
       color: #f5fffa;
       margin: 1rem;
+      height: 4rem;
+      width: 9rem;
       border: 3px solid #343434;
+    }
+
+    button:hover {
+      background-color: #7637a0;
     }
   }
   .ledge-container {
@@ -86,8 +92,31 @@
     width: 93vw;
     margin: 0 1rem 0 1rem;
   }
+
+  footer {
+    font-family: 'Permanent Marker', cursive;
+    margin-top: 13rem;
+  }
 }
 
 div > span {
   padding: 0 0.5rem 0 0.5rem;
+}
+
+@media screen and (min-width: 475px) {
+  .big-container .ledge-container {
+    width: 97vw;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .big-container footer {
+    margin-top: 18rem;
+  }
+}
+
+@media screen and (max-width: 646px) {
+  .big-container footer {
+    margin-top: 18.5rem;
+  }
 }
