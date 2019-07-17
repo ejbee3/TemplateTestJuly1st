@@ -12,4 +12,18 @@
   }
 }
 
-// 0 1.5rem 0 6rem
+.pass-text {
+  margin-left: 0.8rem;
+}
+
+@media screen and (min-width: 451px) {
+  .top-caption img {
+    margin: 2rem 1.5rem 0 2.5rem;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .top-caption img {
+    margin: 0 1.5rem 0 35rem;
+  }
+}

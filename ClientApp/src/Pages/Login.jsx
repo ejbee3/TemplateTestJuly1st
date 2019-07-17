@@ -32,7 +32,9 @@ export default function Login() {
       </section>
       <form onSubmit={submitForm}>
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label className="email-text" for="exampleInputEmail1">
+            Email address
+          </label>
           <input
             type="email"
             name="email"
@@ -47,7 +49,9 @@ export default function Login() {
           </small>
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label className="pass-text" for="exampleInputPassword1">
+            Password
+          </label>
           <input
             type="password"
             name="password"
