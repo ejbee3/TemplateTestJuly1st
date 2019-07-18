@@ -52,3 +52,15 @@ button:focus {
 button:active {
   transform: scale(0.99);
 }
+
+form {
+  input {
+    font-family: $font-stack;
+  }
+}
+
+section {
+  h4 {
+    margin-left: 0.5rem;
+  }
+}

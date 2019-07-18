@@ -8,7 +8,7 @@ export default function ManageStudents() {
   const [student, setStudent] = useState({})
   const [newClass, setNewClass] = useState({})
   const [classes, setClasses] = useState([])
-  const [teacher, setTeacher] = useState({})
+  const [newState, setNewState] = useState({})
 
   useEffect(() => {
     axios
@@ -17,8 +17,8 @@ export default function ManageStudents() {
       })
       .then(resp => {
         console.log(resp.data)
+
         setClasses(resp.data)
-        setStudents(resp.data.students)
         // this doesn't work b/c back end
       })
   }, [])
@@ -61,6 +61,24 @@ export default function ManageStudents() {
     }
   }
 
+  const deleteClass = cl => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${cl.grade} grade - ${cl.subject}?`
+      )
+    ) {
+      axios
+        .delete(`api/class/${cl.id}`, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then(resp => {
+          setClasses(classes.filter(f => f.id !== cl.id))
+        })
+    }
+  }
+
   const addClass = e => {
     e.preventDefault()
     axios
@@ -80,52 +98,68 @@ export default function ManageStudents() {
   }
 
   const updateValue = e => {
-    const state = this.state
-    state.student[e.target.name] = e.target.value
-    this.setState(state)
+    const state = newState
+    student[e.target.name] = e.target.value
+    setNewState(state)
   }
 
   return (
     <div>
       <NavMenu />
-      <h4 className="font-change">New Student?</h4>
-      <form onSubmit={addNewStudent}>
-        <input
-          type="text"
-          placeholder="First Name"
-          name="firstName"
-          onChange={updateValue}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          name="lastName"
-          onChange={updateValue}
-        />
+      <section>
+        <h4 className="font-change">New Student?</h4>
+        <form onSubmit={addNewStudent}>
+          <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            onChange={updateValue}
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            onChange={updateValue}
+          />
 
-        <input
-          type="text"
-          placeholder="Age"
-          name="age"
-          onChange={updateValue}
-        />
-        <input
-          type="text"
-          placeholder="Phone Number"
-          name="phoneNumber"
-          onChange={updateValue}
-        />
-        <button>+</button>
-      </form>
+          <input
+            type="text"
+            placeholder="Age"
+            name="age"
+            onChange={updateValue}
+          />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            onChange={updateValue}
+          />
+          <button>+</button>
+        </form>
+      </section>
       <main>
         <hr />
         <section>
-          <h4>Add a roster for your class:</h4>
+          <h4>Add a class:</h4>
           <form onSubmit={addClass}>
+            <input
+              type="text"
+              placeholder="Grade"
+              name="grade"
+              onChange={updateValue}
+            />
+            <input
+              type="text"
+              placeholder="Subject"
+              name="subject"
+              onChange={updateValue}
+            />
+
             <button>+</button>
           </form>
         </section>
         <hr />
+
         <ul>
           {students.map(student => {
             return (
@@ -136,6 +170,23 @@ export default function ManageStudents() {
                 <button
                   className="delete-student"
                   onClick={() => deleteStudent(student)}
+                >
+                  <i class="material-icons">cancel</i>
+                </button>
+              </section>
+            )
+          })}
+        </ul>
+        <ul>
+          {classes.map(cl => {
+            return (
+              <section className="roster-container">
+                <li key={cl.id} className="students">
+                  {cl.grade} grade -- {cl.subject}
+                </li>{' '}
+                <button
+                  className="delete-student"
+                  onClick={() => deleteClass(cl)}
                 >
                   <i class="material-icons">cancel</i>
                 </button>
