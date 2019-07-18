@@ -4,7 +4,6 @@ import Axios from 'axios'
 import drstrange from '../images/drstrange.gif'
 import sorcerersup from '../images/sorcerersup.gif'
 import { format } from 'date-fns'
-import { Link } from 'react-router-dom'
 import { NavMenu } from '../components/NavMenu'
 
 export default function TeacherPortal() {
