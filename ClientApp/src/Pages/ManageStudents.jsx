@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../scss/ManageStudents.scss'
 import { NavMenu } from '../components/NavMenu'
+import { Link } from 'react-router-dom'
 
 export default function ManageStudents() {
   const [students, setStudents] = useState([])
   const [student, setStudent] = useState({})
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [age, setAge] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   // const [newClass, setNewClass] = useState({})
   // const [classes, setClasses] = useState([])
   const [newState, setNewState] = useState()
@@ -25,19 +30,38 @@ export default function ManageStudents() {
   const addNewStudent = e => {
     e.preventDefault()
     axios
-      .post('/api/student', students, {
-        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
-      })
+      .post(
+        '/api/student',
+        {
+          firstName,
+          lastName,
+          age,
+          phoneNumber
+        },
+        {
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        }
+      )
       .then(resp => {
         setStudent(resp.data)
+        console.log(resp.data)
+        axios
+          .get('/api/student', {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(resp => {
+            setStudents(resp.data)
+            setStudent({})
+            setFirstName('')
+            setLastName('')
+            setAge('')
+            setPhoneNumber('')
+          })
       })
-      .then(resp => {
-        setStudents(students.concat(student))
-        setStudent({})
-      })
-    console.log(students)
 
-    e.target.reset()
+    console.log(students)
   }
 
   const deleteStudent = student => {
@@ -96,45 +120,46 @@ export default function ManageStudents() {
   //   e.target.reset()
   // }
 
-  const updateValue = e => {
-    const state = newState
-    student[e.target.name] = e.target.value
-    setNewState(state)
-  }
-
   return (
     <div>
       <NavMenu />
       <section>
         <h4 className="font-change">New Student?</h4>
-        <form onSubmit={addNewStudent}>
+        <form className="new-student" onSubmit={addNewStudent}>
           <input
             type="text"
             placeholder="First Name"
+            value={firstName}
             name="firstName"
-            onChange={updateValue}
+            onChange={e => setFirstName(e.target.value)}
           />
           <input
             type="text"
             placeholder="Last Name"
+            value={lastName}
             name="lastName"
-            onChange={updateValue}
+            onChange={e => setLastName(e.target.value)}
           />
 
           <input
             type="text"
             placeholder="Age"
+            value={age}
             name="age"
-            onChange={updateValue}
+            onChange={e => setAge(e.target.value)}
           />
           <input
             type="text"
             placeholder="Phone Number"
+            value={phoneNumber}
             name="phoneNumber"
-            onChange={updateValue}
+            onChange={e => setPhoneNumber(e.target.value)}
           />
           <button>+</button>
         </form>
+        <div>
+          <Link />
+        </div>
       </section>
       <main>
         {/* <hr />

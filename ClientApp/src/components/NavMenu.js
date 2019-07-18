@@ -57,12 +57,12 @@ export class NavMenu extends Component {
                 </NavItem>
                 <NavItem className="nav-links">
                   <NavLink tag={Link} className="text-light" to="/login">
-                    Login
+                    Version 2.0
                   </NavLink>
                 </NavItem>
                 <NavItem className="nav-links">
-                  <NavLink tag={Link} className="text-light" to="/signup">
-                    Sign up as teacher
+                  <NavLink tag={Link} className="text-light" to="/">
+                    Log off
                   </NavLink>
                 </NavItem>
               </ul>
