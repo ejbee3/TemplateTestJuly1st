@@ -6,20 +6,19 @@ import { NavMenu } from '../components/NavMenu'
 export default function ManageStudents() {
   const [students, setStudents] = useState([])
   const [student, setStudent] = useState({})
-  const [newClass, setNewClass] = useState({})
-  const [classes, setClasses] = useState([])
-  const [newState, setNewState] = useState({})
+  // const [newClass, setNewClass] = useState({})
+  // const [classes, setClasses] = useState([])
+  const [newState, setNewState] = useState()
 
   useEffect(() => {
     axios
-      .get('/api/class', {
+      .get('/api/student', {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       })
       .then(resp => {
         console.log(resp.data)
 
-        setClasses(resp.data)
-        // this doesn't work b/c back end
+        setStudents(resp.data)
       })
   }, [])
 
@@ -61,41 +60,41 @@ export default function ManageStudents() {
     }
   }
 
-  const deleteClass = cl => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete ${cl.grade} grade - ${cl.subject}?`
-      )
-    ) {
-      axios
-        .delete(`api/class/${cl.id}`, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('token')
-          }
-        })
-        .then(resp => {
-          setClasses(classes.filter(f => f.id !== cl.id))
-        })
-    }
-  }
+  // const deleteClass = cl => {
+  //   if (
+  //     window.confirm(
+  //       `Are you sure you want to delete ${cl.grade} grade - ${cl.subject}?`
+  //     )
+  //   ) {
+  //     axios
+  //       .delete(`api/class/${cl.id}`, {
+  //         headers: {
+  //           Authorization: 'Bearer ' + localStorage.getItem('token')
+  //         }
+  //       })
+  //       .then(resp => {
+  //         setClasses(classes.filter(f => f.id !== cl.id))
+  //       })
+  //   }
+  // }
 
-  const addClass = e => {
-    e.preventDefault()
-    axios
-      .post('/api/class', newClass, {
-        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
-      })
-      .then(resp => {
-        setNewClass(resp.data)
-      })
-      .then(resp => {
-        setClasses(classes.concat(newClass))
-        setNewClass({})
-        console.log(classes)
-      })
+  // const addClass = e => {
+  //   e.preventDefault()
+  //   axios
+  //     .post('/api/class', newClass, {
+  //       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+  //     })
+  //     .then(resp => {
+  //       setNewClass(resp.data)
+  //     })
+  //     .then(resp => {
+  //       setClasses(classes.concat(newClass))
+  //       setNewClass({})
+  //       console.log(classes)
+  //     })
 
-    e.target.reset()
-  }
+  //   e.target.reset()
+  // }
 
   const updateValue = e => {
     const state = newState
@@ -138,7 +137,7 @@ export default function ManageStudents() {
         </form>
       </section>
       <main>
-        <hr />
+        {/* <hr />
         <section>
           <h4>Add a class:</h4>
           <form onSubmit={addClass}>
@@ -157,7 +156,7 @@ export default function ManageStudents() {
 
             <button>+</button>
           </form>
-        </section>
+        </section> */}
         <hr />
 
         <ul>
@@ -177,7 +176,7 @@ export default function ManageStudents() {
             )
           })}
         </ul>
-        <ul>
+        {/* <ul>
           {classes.map(cl => {
             return (
               <section className="roster-container">
@@ -193,7 +192,7 @@ export default function ManageStudents() {
               </section>
             )
           })}
-        </ul>
+        </ul> */}
         <hr />
       </main>
     </div>

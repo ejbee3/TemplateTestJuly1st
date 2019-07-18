@@ -23,17 +23,11 @@ namespace sdg_react_template.Controllers
 
     // GET: api/Student
     [HttpGet]
-    public async Task<ActionResult<List<Student>>> GetStudents([FromQuery] int? ClassId)
+    public async Task<ActionResult<List<Student>>> GetStudents()
     {
-      if (ClassId == null)
-      {
-        return NotFound();
-      }
-      var fetchStudents = await _context.Classes
-.Include(s => s.Students)
-.FirstOrDefaultAsync(c => c.Id == ClassId);
 
-      return fetchStudents.Students;
+
+      return await _context.Students.ToListAsync();
     }
 
     // GET: api/Student/5 from class
@@ -91,7 +85,7 @@ namespace sdg_react_template.Controllers
       _context.Students.Add(student);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetStudent", new { id = student.Id }, student);
+      return Ok(student);
     }
 
     // DELETE: api/Student/5
