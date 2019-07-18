@@ -76,22 +76,17 @@ export default function TeacherPortal() {
     })
   }
 
-  const redoCheckIn = student => {
-    setStudents(st => st.concat(student))
-    setCheckedInStudents(st => st.filter(s => s.id !== student.id))
-  }
+  // const redoCheckIn = student => {
+  //   setStudents(st => st.concat(student))
+  //   setCheckedInStudents(st => st.filter(s => s.id !== student.id))
+  // }
 
-  const redoAbsent = student => {
-    setStudents(st => st.concat(student))
-    setAbsentStudents(st => st.filter(s => s.id !== student.id))
-  }
+  // const redoAbsent = student => {
+  //   setStudents(st => st.concat(student))
+  //   setAbsentStudents(st => st.filter(s => s.id !== student.id))
+  // }
 
   console.log({ message })
-
-  const signOut = () => {
-    localStorage.clear()
-    window.location.href = '/login'
-  }
 
   return (
     <div>
@@ -190,10 +185,6 @@ export default function TeacherPortal() {
           <hr />
         </section>
       </main>
-
-      <section>
-        <button onClick={signOut}>sign out</button>
-      </section>
     </div>
   )
 }
