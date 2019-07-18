@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../scss/Version2.scss'
+import { Link } from 'react-router-dom'
 class Version2 extends Component {
   render() {
     return (
@@ -17,6 +18,11 @@ class Version2 extends Component {
             <li>Button to excuse absences in past attendance.</li>
           </ul>
         </main>
+        <section>
+          <Link className="upload-link" to="/teach">
+            <button className="back-button">back to app!</button>
+          </Link>
+        </section>
       </div>
     )
   }

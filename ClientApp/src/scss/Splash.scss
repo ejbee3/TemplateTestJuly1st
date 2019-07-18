@@ -109,6 +109,16 @@ div > span {
   }
 }
 
+@media screen and (min-width: 1260px) {
+  .big-container .ledge-container {
+    width: 100vw;
+  }
+
+  .description {
+    font-size: 3rem;
+  }
+}
+
 @media screen and (max-width: 760px) {
   .big-container footer {
     margin-top: 18rem;
