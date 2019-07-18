@@ -13,7 +13,6 @@ export default function ManageStudents() {
   const [phoneNumber, setPhoneNumber] = useState('')
   // const [newClass, setNewClass] = useState({})
   // const [classes, setClasses] = useState([])
-  const [newState, setNewState] = useState()
 
   useEffect(() => {
     axios
@@ -157,9 +156,12 @@ export default function ManageStudents() {
           />
           <button>+</button>
         </form>
-        <div>
-          <Link />
-        </div>
+
+        <section>
+          <Link className="upload-link" to="/upload">
+            <button className="upload-button">upload pic</button>
+          </Link>
+        </section>
       </section>
       <main>
         {/* <hr />

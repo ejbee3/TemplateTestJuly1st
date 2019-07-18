@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import '../scss/UploadPhoto.scss'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
+import { Link } from 'react-router-dom'
 
 export default class UploadPhoto extends Component {
   state = {}
@@ -63,8 +64,19 @@ export default class UploadPhoto extends Component {
           }}
         </Dropzone>
         <div>
-          <img src={this.state.lastUploadedUrl} alt="upload" />
+          {this.state.lastUploadedUrl && (
+            <img
+              className="format-upload"
+              src={this.state.lastUploadedUrl}
+              alt="upload"
+            />
+          )}
         </div>
+        <section>
+          <Link className="upload-link" to="/teach">
+            <button className="back-button">back to app!</button>
+          </Link>
+        </section>
       </div>
     )
   }

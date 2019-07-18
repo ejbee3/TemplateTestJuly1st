@@ -19,7 +19,7 @@ export default function Register() {
       localStorage.setItem('token', resp.data.token)
       localStorage.setItem('expires_at', resp.data.expiresAt)
       localStorage.setItem('current_user', JSON.stringify(resp.data.user))
-      window.location.href = '/'
+      window.location.href = '/teach'
     })
   }
 

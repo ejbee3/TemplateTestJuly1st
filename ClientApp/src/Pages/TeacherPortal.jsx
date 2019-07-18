@@ -159,9 +159,9 @@ export default function TeacherPortal() {
                   <li key={s.id}>
                     {s.firstName} {s.lastName}
                   </li>{' '}
-                  <button onClick={redoCheckIn} className="absent-button">
+                  {/* <button onClick={redoCheckIn} className="absent-button">
                     <i class="material-icons">arrow_upward</i>
-                  </button>
+                  </button> */}
                   <i class="fas fa-dog dog-icon" />
                 </section>
               )
@@ -179,9 +179,9 @@ export default function TeacherPortal() {
                   <li key={s.id}>
                     {s.firstName} {s.lastName}
                   </li>{' '}
-                  <button onClick={redoAbsent} className="absent-button">
+                  {/* <button onClick={redoAbsent} className="absent-button">
                     <i class="material-icons">arrow_upward</i>
-                  </button>
+                  </button> */}
                   <i class="fas fa-dog dog-icon" />
                 </section>
               )
@@ -194,19 +194,6 @@ export default function TeacherPortal() {
       <section>
         <button onClick={signOut}>sign out</button>
       </section>
-      <section>
-        <Link className="upload-link" to="/upload">
-          <button className="upload-button">upload pic</button>
-        </Link>
-      </section>
-      <section>
-        <Link className="past-attendance" to="/past">
-          <button className="past-button">past attendance</button>
-        </Link>
-      </section>
-      <Link className="splash-link" to="/splash">
-        <button className="splash-button">splash</button>
-      </Link>
     </div>
   )
 }

@@ -30,6 +30,11 @@ export class NavMenu extends Component {
     })
   }
 
+  signOut = () => {
+    localStorage.clear()
+    window.location.href = '/'
+  }
+
   render() {
     return (
       <header>
@@ -56,12 +61,16 @@ export class NavMenu extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem className="nav-links">
-                  <NavLink tag={Link} className="text-light" to="/login">
+                  <NavLink tag={Link} className="text-light" to="/version">
                     Version 2.0
                   </NavLink>
                 </NavItem>
                 <NavItem className="nav-links">
-                  <NavLink tag={Link} className="text-light" to="/">
+                  <NavLink
+                    onClick={this.signOut}
+                    tag={Link}
+                    className="text-light"
+                  >
                     Log off
                   </NavLink>
                 </NavItem>
