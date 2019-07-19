@@ -92,7 +92,7 @@ export default function TeacherPortal() {
       <NavMenu />
       <section className="teacher-info">
         <h2>Today's Session</h2>
-        <h3>Wilson, 6th grade Math</h3>
+        <h3>Mr. B, 6th grade Math</h3>
         <section className="black-board">
           <p>2x + y = 8</p>
           <img
